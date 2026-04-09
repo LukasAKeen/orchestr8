@@ -1,16 +1,22 @@
 // ---------------------------------------------------------------------------
-// AI SDK Setup – Anthropic Claude Provider & System Prompts
+// AI SDK Setup – Vercel AI Gateway Provider & System Prompts
 // ---------------------------------------------------------------------------
 
-import { createAnthropic } from "@ai-sdk/anthropic";
+import { gateway } from "@ai-sdk/gateway";
 
 /**
- * Pre-configured Anthropic provider instance.
- * Reads ANTHROPIC_API_KEY from the environment automatically.
+ * Vercel AI Gateway provider.
+ *
+ * When deployed on Vercel, authentication is handled automatically.
+ * For local development, set VERCEL_AI_GATEWAY_API_KEY in .env.local
+ * (generate one from your Vercel project settings → AI tab).
+ *
+ * Models are referenced as "provider/model", e.g. "anthropic/claude-sonnet-4-5".
  */
-export const anthropic = createAnthropic({
-  // The SDK reads ANTHROPIC_API_KEY from process.env by default.
-});
+export { gateway };
+
+/** Default model used across AI routes */
+export const AI_MODEL = "anthropic/claude-sonnet-4-5";
 
 // ---------------------------------------------------------------------------
 // Shared System Prompts

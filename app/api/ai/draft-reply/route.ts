@@ -1,5 +1,5 @@
 import { streamText } from "ai";
-import { anthropic, DRAFT_REPLY_SYSTEM_PROMPT } from "@/lib/ai";
+import { gateway, AI_MODEL, DRAFT_REPLY_SYSTEM_PROMPT } from "@/lib/ai";
 
 export async function POST(request: Request) {
   try {
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
       .join("\n");
 
     const result = streamText({
-      model: anthropic("claude-sonnet-4-5-20250514"),
+      model: gateway(AI_MODEL),
       system: DRAFT_REPLY_SYSTEM_PROMPT,
       prompt,
     });

@@ -253,22 +253,48 @@ export default function SettingsPage() {
                     <Sparkles className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium">Claude Sonnet</p>
+                    <p className="text-sm font-medium">
+                      Vercel AI Gateway &mdash; Claude Sonnet
+                    </p>
                     <p className="text-xs text-muted-foreground">
-                      Anthropic Claude — used for triage, draft replies, and
-                      suggestions
+                      Routes through Vercel&apos;s AI Gateway for caching,
+                      rate limiting, and observability
                     </p>
                   </div>
                 </div>
                 <Separator />
-                <p className="text-sm text-muted-foreground">
-                  The AI model is configured via the{" "}
-                  <code className="rounded bg-muted px-1.5 py-0.5 text-xs font-mono">
-                    ANTHROPIC_API_KEY
-                  </code>{" "}
-                  environment variable. The model selection is configured
-                  server-side in the API route handlers.
-                </p>
+                <div className="text-sm text-muted-foreground space-y-2">
+                  <p>
+                    AI requests are routed through{" "}
+                    <span className="font-medium text-foreground">
+                      Vercel AI Gateway
+                    </span>
+                    . When deployed on Vercel, authentication is automatic.
+                  </p>
+                  <p>
+                    For local development, set{" "}
+                    <code className="rounded bg-muted px-1.5 py-0.5 text-xs font-mono">
+                      VERCEL_AI_GATEWAY_API_KEY
+                    </code>{" "}
+                    in{" "}
+                    <code className="rounded bg-muted px-1.5 py-0.5 text-xs font-mono">
+                      .env.local
+                    </code>
+                    . Generate one from your Vercel project settings &rarr; AI
+                    tab &rarr; Gateway API Keys.
+                  </p>
+                  <p>
+                    The model (currently{" "}
+                    <code className="rounded bg-muted px-1.5 py-0.5 text-xs font-mono">
+                      anthropic/claude-sonnet-4-5
+                    </code>
+                    ) can be changed in{" "}
+                    <code className="rounded bg-muted px-1.5 py-0.5 text-xs font-mono">
+                      lib/ai.ts
+                    </code>
+                    .
+                  </p>
+                </div>
               </CardContent>
             </Card>
 

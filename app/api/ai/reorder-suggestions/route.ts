@@ -1,5 +1,5 @@
 import { generateObject } from "ai";
-import { anthropic, REORDER_SYSTEM_PROMPT } from "@/lib/ai";
+import { gateway, AI_MODEL, REORDER_SYSTEM_PROMPT } from "@/lib/ai";
 import { reorderSuggestionSchema } from "@/lib/validators";
 
 export async function POST(request: Request) {
@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     const prompt = `Current Inventory:\n${JSON.stringify(inventoryItems, null, 2)}`;
 
     const { object } = await generateObject({
-      model: anthropic("claude-sonnet-4-5-20250514"),
+      model: gateway(AI_MODEL),
       system: REORDER_SYSTEM_PROMPT,
       prompt,
       schema: reorderSuggestionSchema,

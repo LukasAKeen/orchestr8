@@ -1,5 +1,5 @@
 import { generateObject } from "ai";
-import { anthropic, BOARD_SUGGESTIONS_SYSTEM_PROMPT } from "@/lib/ai";
+import { gateway, AI_MODEL, BOARD_SUGGESTIONS_SYSTEM_PROMPT } from "@/lib/ai";
 import { boardSuggestionSchema } from "@/lib/validators";
 
 export async function POST(request: Request) {
@@ -21,7 +21,7 @@ export async function POST(request: Request) {
       .join("\n");
 
     const { object } = await generateObject({
-      model: anthropic("claude-sonnet-4-5-20250514"),
+      model: gateway(AI_MODEL),
       system: BOARD_SUGGESTIONS_SYSTEM_PROMPT,
       prompt,
       schema: boardSuggestionSchema,

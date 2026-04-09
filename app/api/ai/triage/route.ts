@@ -1,5 +1,5 @@
 import { generateObject } from "ai";
-import { anthropic, TRIAGE_SYSTEM_PROMPT } from "@/lib/ai";
+import { gateway, AI_MODEL, TRIAGE_SYSTEM_PROMPT } from "@/lib/ai";
 import { triageResultSchema } from "@/lib/validators";
 
 export async function POST(request: Request) {
@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     }
 
     const { object } = await generateObject({
-      model: anthropic("claude-sonnet-4-5-20250514"),
+      model: gateway(AI_MODEL),
       system: TRIAGE_SYSTEM_PROMPT,
       prompt: [
         `Subject: ${subject}`,
